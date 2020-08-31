@@ -2,9 +2,14 @@ const express = require('express')
 
 const router = express.Router()
 
-router.get('/checklist',(req, res) =>{
+router.get('/',(req, res) =>{
   console.log("ola")
   res.send()
 })
-//continuarei daqui
+//rota post voce coleta dados e retorna-os ao usuario adqueado
+.post('/', (req, res) => {
+  console.log(req.body)
+  res.status(200).send(req.body)
+})
+//basta
 module.exports = router

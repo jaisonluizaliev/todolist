@@ -5,7 +5,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use(checklistRouter)
+app.use('/checklist',checklistRouter)
 
 .listen(3000, ()=>{
   console.log('server initialized')
