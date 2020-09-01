@@ -16,5 +16,16 @@ router.get('/',(req, res) =>{
   console.log(req.params.id)
   res.send(`ID: ${req.params.id}`)
 })
+//PUT = ATUALIZAÇÃO DE BANCO
+.put('/:id', (req, res) => {
+  console.log(req.body)
+  res.send(`PUT ID: ${req.params.id}`)
+})
+//DELETE = DELETAR DADOS DO BANCO
+.delete('/:id', (req, res) => {
+  console.log(req.body)
+  res.send(`DELETE ID: ${req.params.id}`)
+})
+
 //basta
 module.exports = router
