@@ -11,5 +11,10 @@ router.get('/',(req, res) =>{
   console.log(req.body)
   res.status(200).send(req.body)
 })
+
+.get('/:id', (req, res)=>{
+  console.log(req.params.id)
+  res.send(`ID: ${req.params.id}`)
+})
 //basta
 module.exports = router
