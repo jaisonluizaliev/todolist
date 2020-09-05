@@ -1,0 +1,61 @@
+Alguns dados precisam estar linkados a outros para que possamos manipúlá-los corretamente, por exemplo, se voce possuir no seu banco de dados informações que representem os tripulantes  de uma missao espacial e importante voce relaciona-los cada um no seu quadrado
+
+/*TIPOS DE ASSOCIAÇÕES*/
+>ONE-TO-ONE
+>ONE-TO-MANY
+>MANY-MANY
+
+/*EXEMPLO*/
+
+imagine que voce possua um conjunto de naves espaciais e que cada uma delas possua tripulantes, como voce representa isso num banco de  dados??
+
+Embed(embutidos) Documents!
+
+todos os dados saao engolobados dentro do mesmo documento incluindo sub documentos
+{
+  "_id": "5454s54x4cx4c5x4c5cx",
+  "nave": "Apollo",
+  "agencia": "nasa",
+  "tripulantes": [
+    {"nome":"William X"},
+    {"nome": "Mark Y"}
+  ]
+},
+{
+  "_id":"4s54dg6d4s665s6s8585",
+  "nave": "Sputnik",
+  "agencia": "Roskosmos",
+  "tripulantes": [
+    {"nome":"Jai X"},
+    {"nome": "Sabrin Y"}
+  ]
+}
+
+porem este metodo traz alguns problemas 
+  - o que aconteceria se precisarmos ?atualizar um tripulante em comum
+  - o que aconteceria se tivessemos milhares de tripulantes? 
+
+...]
+
+/*quando usar*/
+
+
+ - quando queremos devolver o doc inteiro com uma query simples 
+
+ - quando sabemos que o doc nao vai atingir o tamanho muito grande (como uma nave com milhares de trips)
+
+ - quando os dados a serem associados só são uteis junto com o documento que queremos associar 
+
+/*quando usar a referncia */
+
+ - quando os dados precisarem ser referenciados  em muitos locais
+
+ - quando queremos selecionar isoladamente os doc
+
+ - quando quisermos ter mais controle sobre as querys 
+
+
+
+
+
+
