@@ -1,0 +1,35 @@
+primeiro rode mongo no terminal!
+
+>mongo
+
+>show dbs 
+lista meus bancos criados
+
+>use <nome banco> 
+seleciona o banco
+
+>db.createCollection('nomeCollection')
+torna o banco selecionado utilizavel e cria uma colletcion dentro
+/*INSERIR DADOS*/
+>db.<collectionCriada>.insert({json:json, object:[{object:object}]})
+
+>db.<collectionCriada>.save({inseri tambem dados})
+/*SEARCH DADOS*/
+>db.<collectionCriada>.find()
+mostra as collection em detalhes
+>db.<collectionCriada>.find({<nome&valor>})
+
+/*ATUALIZA DADOS*/
+>db.<collectionCriada>.update({<dados anteriores>, <dados atualizados>})
+
+/*DELETA DADOS*/
+>db.<collectionCriada>.deleteOne({<nomeCollection>/<ID>})
+
+cada collection temm um id e este id é o que sera usado para referenciar e tbm relacionar os dados
+
+estes comandos n serão usados no dia-a-dia, pois usaremos um adaptador para comunicação do node com o mongo  
+
+
+
+
+
