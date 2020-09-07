@@ -1,4 +1,0 @@
-$lookup
-$and filtro mais profundo
-$or filtro uma ou outra!
-#exists
