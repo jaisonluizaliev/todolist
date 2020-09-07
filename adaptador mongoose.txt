@@ -1,5 +1,0 @@
-instalamos o mongoose que é um adaptador para trabalhar de forma mais simples com o mongo
-npm i mongoose --save
-
-criamos uma pasta config no root
-e dentro um database.js
