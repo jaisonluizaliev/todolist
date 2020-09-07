@@ -7,5 +7,5 @@ mongoose.Promise = global.Promise
 //configs padrões
 //tente senão retorne um erro!
 mongoose.connect('mongodb://localhost/todo-list', {useNewUrlParser: true, useUnifiedTopology: true})
-.then(()=>{console.log('Conectado ao Mongo DB')})
+.then(()=>{console.log('Conected in MongoDB')})
 .catch((err)=>{console.error(err)})

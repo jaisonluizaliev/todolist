@@ -4,15 +4,21 @@ const router = express.Router()
 
 const Checklist = require('../models/checklist')
 
-router.get('/',(req, res) =>{
-  console.log("ola")
-  res.send()
+//rota que procura todos os resultados
+router.get('/', async (req, res) =>{
+  //para procurarmos usamos o find
+  try {
+    let checklists = await Checklist.find()
+    res.status(200).send(checklists)
+  } catch (error) {
+    res.status(500).json(error)  
+  }
 })
-//rota post voce coleta dados e retorna-os ao usuario adqueado
+//rota que "post" novos results!
 .post('/', async (req, res) => {
   let {name}= req.body
-  
   try {
+    //para criarmos uma nova checklist usamos  o create
     let checklist = await Checklist.create({ name })
     res.status(200).send(checklist)
   } catch (error) {
@@ -20,10 +26,16 @@ router.get('/',(req, res) =>{
   }
 })
 
-.get('/:id', (req, res)=>{
-  console.log(req.params.id)
-  res.send(`ID: ${req.params.id}`)
+//rota que procura id especifico
+.get('/:id', async (req, res)=>{
+  try {
+    let checklist = await Checklist.findById(req.params.id)
+    res.status(200).json(checklist)
+  } catch (error) {
+    res.status(422).json(error)  
+  }
 })
+
 //PUT = ATUALIZAÇÃO DE BANCO
 .put('/:id', (req, res) => {
   console.log(req.body)

@@ -7,7 +7,7 @@ require('./config/database')
 const app = express()
 app.use(express.json())
 
-app.use('/checklist',checklistRouter)
+app.use('/checklists',checklistRouter)
 
 app.listen(3000, ()=>{
   console.log('server initialized')
