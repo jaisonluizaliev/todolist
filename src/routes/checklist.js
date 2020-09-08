@@ -4,14 +4,12 @@ const router = express.Router()
 
 const Checklist = require('../models/checklist')
 
-//rota que procura todos os resultados
 router.get('/', async (req, res) =>{
-  //para procurarmos usamos o find
   try {
-    let checklists = await Checklist.find()
-    res.status(200).send(checklists)
+    let checklists = await Checklist.find({})
+    res.status(200).render('checklists/index', { checklists: checklists })//=> o mesmo q{checklists:checklists}
   } catch (error) {
-    res.status(500).json(error)  
+    res.status(422).render('pages/error', { error: 'erro ao exibir as Listas'})
   }
 })
 //rota que "post" novos results!
@@ -30,9 +28,9 @@ router.get('/', async (req, res) =>{
 .get('/:id', async (req, res)=>{
   try {
     let checklist = await Checklist.findById(req.params.id)
-    res.status(200).json(checklist)
+    res.status(200).render('checklists/show', { checklist: checklist })
   } catch (error) {
-    res.status(422).json(error)  
+    res.status(422).render('pages/error', { error:' erro ao exibir as listas de tarefas '})
   }
 })
 
