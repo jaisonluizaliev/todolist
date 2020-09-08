@@ -8,6 +8,8 @@ require('./config/database')
 
 const app = express()
 app.use(express.json())
+//habilitando uso de arquivos estaticos
+app.use(express.static(path.join(__dirname, 'public')))
 //adicionamos o path para falar onde estão nossas views para uso do ejs!
 app.set('views', path.join(__dirname, 'src/views'))
 //agora irei instalar a minha view engine
