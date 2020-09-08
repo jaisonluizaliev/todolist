@@ -1,9 +1,0 @@
-o que é EJS?
-TEMPLATE ENGINE...RENDEREZIADOR DE PAGINAS DINAMICAS
--é uma ferramenta que permite a criação de paginas dinâmicas 
--é possível o uso de codigos JS embutidos nestas paginas 
-  - não são codigos que serão lidos no frontend
-  - são codigos que o ejs usara para montar um html que sera enviado para o front-end 
-
--Possibilita a componentização das views com os dados gerados
-  - conseguimos fazer os reuso de codigos e deixar nosso app mais organizado

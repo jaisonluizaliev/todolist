@@ -1,0 +1,4 @@
+o ejs oferece recursos para nos evitar fazendo repetições ela da a chance de nos usar partials
+ou blocks
+
+vamos fazer is to na pratica nest aula veja em views/layouts/header.ejs && footer.ejs && menu.ejs
