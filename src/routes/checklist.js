@@ -37,14 +37,31 @@ router.get('/', async (req, res) =>{
 })
 
 //PUT = ATUALIZAÇÃO DE BANCO
-.put('/:id', (req, res) => {
-  console.log(req.body)
-  res.send(`PUT ID: ${req.params.id}`)
+//como atualizar com o mongose
+.put('/:id', async (req, res) => {
+  let {name} = req.body 
+  //se tivesse mais requicisões passariamos dentro dos colchetes, exemplo description, etc....
+  try {
+    let checklist = await Checklist
+    //para atualizar usamos o findbyidandupdate
+    //dentro dele passamos o parametro que sera atualizado
+    //passamos a requicisão
+    //new : true serve para atualizar imediatamente
+    .findByIdAndUpdate(req.params.id, {name}, {new: true})
+    res.status(200).json(checklist)
+  } catch (error) {
+    res.status(422).json(error)  
+  }
 })
 //DELETE = DELETAR DADOS DO BANCO
-.delete('/:id', (req, res) => {
-  console.log(req.body)
-  res.send(`DELETE ID: ${req.params.id}`)
+//deleta por id!
+.delete('/:id', async (req, res) => {
+  try {
+    let checklist = await Checklist.findByIdAndRemove(req.params.id)
+    res.status(200).json(checklist)
+  } catch (error) {
+    res.status(422).json(error)  
+  }
 })
 
 //basta
