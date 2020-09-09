@@ -23,6 +23,18 @@ router.get('/new', async(req, res)=>{
   }
 })
 
+
+//rota de edição
+router.get('/:id/edit', async(req, res)=>{
+  try {
+    let checklist = await Checklist.findById(req.params.id)
+    res.status(200).render('checklists/edit', {checklist:checklist})
+  } catch (error) {
+    res.status(500).render('pages/error', {error:'erro ao exibir a lista de tarefas'})
+  }
+})
+
+
 //rota que "post" novos results!
 router.post('/', async (req, res) => {
   let { name }= req.body.checklist
@@ -49,19 +61,21 @@ router.get('/:id', async (req, res)=>{
 
 //PUT = ATUALIZAÇÃO DE BANCO
 //como atualizar com o mongose
+//atualizando as tasks
 router.put('/:id', async (req, res) => {
-  let {name} = req.body 
+  let {name} = req.body.checklist 
+  let checklist = await Checklist.findById(req.params.id) 
   //se tivesse mais requicisões passariamos dentro dos colchetes, exemplo description, etc....
   try {
-    let checklist = await Checklist
     //para atualizar usamos o findbyidandupdate
     //dentro dele passamos o parametro que sera atualizado
     //passamos a requicisão
     //new : true serve para atualizar imediatamente
-    .findByIdAndUpdate(req.params.id, {name}, {new: true})
-    res.status(200).json(checklist)
+    await checklist.update({ name })
+    res.redirect('/checklists')
   } catch (error) {
-    res.status(422).json(error)  
+    let errors = error.errors
+    res.status(422).render('checklists/edit', {checklist: {...checklist, errors}})  
   }
 })
 //DELETE = DELETAR DADOS DO BANCO
