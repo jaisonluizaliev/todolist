@@ -8,6 +8,8 @@ require('./config/database')
 
 const app = express()
 app.use(express.json())
+//habilitando uso de url de forms
+app.use(express.urlencoded({extended:true}))
 //habilitando uso de arquivos estaticos
 app.use(express.static(path.join(__dirname, 'public')))
 //adicionamos o path para falar onde estão nossas views para uso do ejs!

@@ -12,20 +12,33 @@ router.get('/', async (req, res) =>{
     res.status(422).render('pages/error', { error: 'erro ao exibir as Listas'})
   }
 })
+
+//rota form
+router.get('/new', async(req, res)=>{
+  try {
+    let checklist = new Checklist()
+    res.status(200).render('checklists/new', {checklist : checklist})
+  } catch (error) {
+    res.status(500).render('pages/error', {errors:' Erro ao carrregar o formulario'})
+  }
+})
+
 //rota que "post" novos results!
-.post('/', async (req, res) => {
-  let {name}= req.body
+router.post('/', async (req, res) => {
+  let { name }= req.body.checklist
+  let checklist = new Checklist({ name })
   try {
     //para criarmos uma nova checklist usamos  o create
-    let checklist = await Checklist.create({ name })
-    res.status(200).send(checklist)
+    await checklist.save()
+    res.redirect('/checklists')
   } catch (error) {
-    res.status(422).json(error)  
+    res.status(422).render('checklists/new', { checklist: {...checklist,error} })
+
   }
 })
 
 //rota que procura id especifico
-.get('/:id', async (req, res)=>{
+router.get('/:id', async (req, res)=>{
   try {
     let checklist = await Checklist.findById(req.params.id)
     res.status(200).render('checklists/show', { checklist: checklist })
@@ -36,7 +49,7 @@ router.get('/', async (req, res) =>{
 
 //PUT = ATUALIZAÇÃO DE BANCO
 //como atualizar com o mongose
-.put('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   let {name} = req.body 
   //se tivesse mais requicisões passariamos dentro dos colchetes, exemplo description, etc....
   try {
@@ -53,7 +66,7 @@ router.get('/', async (req, res) =>{
 })
 //DELETE = DELETAR DADOS DO BANCO
 //deleta por id!
-.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     let checklist = await Checklist.findByIdAndRemove(req.params.id)
     res.status(200).json(checklist)
