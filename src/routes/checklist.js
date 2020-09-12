@@ -4,6 +4,7 @@ const router = express.Router()
 
 const Checklist = require('../models/checklist')
 
+
 router.get('/', async (req, res) =>{
   try {
     let checklists = await Checklist.find({})
@@ -12,6 +13,7 @@ router.get('/', async (req, res) =>{
     res.status(422).render('pages/error', { error: 'erro ao exibir as Listas'})
   }
 })
+
 
 //rota form
 router.get('/new', async(req, res)=>{
@@ -49,6 +51,7 @@ router.post('/', async (req, res) => {
   }
 })
 
+
 //rota que procura id especifico
 router.get('/:id', async (req, res)=>{
   try {
@@ -78,14 +81,16 @@ router.put('/:id', async (req, res) => {
     res.status(422).render('checklists/edit', {checklist: {...checklist, errors}})  
   }
 })
+
 //DELETE = DELETAR DADOS DO BANCO
 //deleta por id!
 router.delete('/:id', async (req, res) => {
   try {
-    let checklist = await Checklist.findByIdAndRemove(req.params.id)
-    res.status(200).json(checklist)
+    let checklist = await Checklist
+    .findByIdAndRemove(req.params.id)
+    res.redirect('/checklists')
   } catch (error) {
-    res.status(422).json(error)  
+    res.status(500).render('pages/error', {error: 'Erro ao deletar lista de tarefas '})
   }
 })
 
