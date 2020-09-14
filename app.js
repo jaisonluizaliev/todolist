@@ -34,9 +34,11 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
 //added rota para teste com o ejs
+//middlewares
 app.use('/', rootRouter);
 app.use('/checklists', checkListRouter);
 app.use('/checklists', taskRouter.checklistDepedent);
+app.use('/tasks', taskRouter.simple)
 
 app.listen(3000, () => {
   console.log('Server initialized');
