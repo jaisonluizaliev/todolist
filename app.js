@@ -15,7 +15,7 @@ require('./config/database');
 
 
 const app = express();
-app.use(express.json());
+app.use(express.json())
 
 //habilitando uso de url de forms
 app.use(express.urlencoded({ extended: true }));
